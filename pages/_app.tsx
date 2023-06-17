@@ -1,15 +1,18 @@
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-import type { AppProps } from "next/app";
 import "../styles/globals.css";
-
-// This is the chain your dApp will work on.
-const activeChain = "OmegaMainNetwork";
+import type { AppProps } from "next/app";
+import { useState } from "react";
+import ChainContext from "../context/Chain";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [selectedChain, setSelectedChain] = useState("OmegaMainNetwork");
+
   return (
-    <ThirdwebProvider activeChain={activeChain}>
-      <Component {...pageProps} />
-    </ThirdwebProvider>
+    <ChainContext.Provider value={{ selectedChain, setSelectedChain }}>
+      <ThirdwebProvider activeChain={selectedChain}>
+        <Component {...pageProps} />
+      </ThirdwebProvider>
+    </ChainContext.Provider>
   );
 }
 
