@@ -1,4 +1,5 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { OmegaMainNetwork } from "@thirdweb-dev/chains";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
 
